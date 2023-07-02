@@ -1,9 +1,12 @@
 import React from "react";
 
+import { useToastContext } from "../ToastProvider";
 import Toast from "../Toast";
 import styles from "./ToastShelf.module.css";
 
-function ToastShelf({ list, removeToast }) {
+function ToastShelf() {
+  const { list, removeToast } = useToastContext();
+
   if (list.length == 0) return null;
 
   return (
