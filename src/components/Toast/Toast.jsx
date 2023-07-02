@@ -20,17 +20,19 @@ const ICONS_BY_VARIANT = {
 
 export const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
-function Toast({ children, variant = "notice" }) {
+function Toast({ children, isOpen, variant = "notice", onRequestClose }) {
+  if (!isOpen) return;
+
   const Icon = ICONS_BY_VARIANT[variant];
 
   return (
-    <div className={`${styles.toast} ${styles.notice}`}>
+    <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>
         <Icon size={24} />
       </div>
       <p className={styles.content}>{children}</p>
-      <button className={styles.closeButton}>
-        <X size={24} />
+      <button className={styles.closeButton} onClick={() => onRequestClose?.()}>
+        <X size={24} aria-hidden={true} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
     </div>
