@@ -20,9 +20,7 @@ const ICONS_BY_VARIANT = {
 
 export const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
-function Toast({ children, isOpen, variant = "notice", onRequestClose }) {
-  if (!isOpen) return;
-
+function Toast({ children, variant = "notice", onRequestClose }) {
   const Icon = ICONS_BY_VARIANT[variant];
 
   return (

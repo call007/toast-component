@@ -1,18 +1,35 @@
 import React, { useCallback, useState } from "react";
 
 import Button from "../Button";
-import Toast, { VARIANT_OPTIONS } from "../Toast";
+import { VARIANT_OPTIONS } from "../Toast";
+import ToastShelf from "../ToastShelf";
 
 import styles from "./ToastPlayground.module.css";
 
-function ToastPlayground() {
-  const [isToastOpen, setIsToastOpen] = useState(false);
-  const [message, setMessage] = React.useState("");
-  const [variant, setVariant] = React.useState(() => VARIANT_OPTIONS[0]);
+const DEFAULT_VARIANT = VARIANT_OPTIONS[0];
 
-  const handleSumbit = useCallback((e) => {
-    e.preventDefault();
-    setIsToastOpen(true);
+function ToastPlayground() {
+  const [list, setList] = useState([]);
+  const [message, setMessage] = React.useState("");
+  const [variant, setVariant] = React.useState(() => DEFAULT_VARIANT);
+
+  const handleSumbit = useCallback(
+    (e) => {
+      e.preventDefault();
+      setList((prevList) => [
+        ...prevList,
+        { id: crypto.randomUUID(), message, variant },
+      ]);
+      setMessage("");
+      setVariant(DEFAULT_VARIANT);
+    },
+    [message, variant]
+  );
+
+  const removeToast = useCallback((id) => {
+    setList((prevList) => {
+      return prevList.filter((toast) => toast.id !== id);
+    });
   }, []);
 
   return (
@@ -22,13 +39,7 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      <Toast
-        isOpen={isToastOpen}
-        variant={variant}
-        onRequestClose={() => setIsToastOpen(false)}
-      >
-        {message}
-      </Toast>
+      <ToastShelf list={list} removeToast={removeToast} />
 
       <form onSubmit={handleSumbit}>
         <div className={styles.controlsWrapper}>
