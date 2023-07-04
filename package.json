@@ -4,11 +4,9 @@
   "private": true,
   "author": "Ed Shevtsov <call007.ed@gmail.com>",
   "type": "module",
-  "source": "index.html",
   "homepage": "https://call007.github.io/toast-component/",
   "scripts": {
     "start": "vite --port 3000",
-    "prebuild": "rm -rf dist",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
