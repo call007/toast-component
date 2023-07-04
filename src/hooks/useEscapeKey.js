@@ -15,5 +15,5 @@ export const useEscapeKey = (callback) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [callback]);
 };

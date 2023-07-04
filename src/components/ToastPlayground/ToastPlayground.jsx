@@ -1,5 +1,3 @@
-import React from "react";
-
 import ToastShelf from "../ToastShelf";
 import ToastPlaygroundForm from "./ToastPlaygroundForm";
 
@@ -13,9 +11,9 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      <ToastShelf />
-
       <ToastPlaygroundForm />
+
+      <ToastShelf />
     </div>
   );
 }

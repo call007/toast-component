@@ -1,14 +1,18 @@
 import React from "react";
 import { useEscapeKey } from "../../hooks/useEscapeKey";
 
-const ToastContext = React.createContext({});
+export const ToastContext = React.createContext({});
 
 function ToastProvider({ children }) {
   const [list, setList] = React.useState([]);
 
-  useEscapeKey(() => {
-    setList([]);
-  });
+  const handleEscape = React.useCallback(() => {
+    if (list.length > 0) {
+      setList([]);
+    }
+  }, [list.length]);
+
+  useEscapeKey(handleEscape);
 
   const addToast = React.useCallback(({ message, variant }) => {
     setList((prevList) => [
@@ -27,7 +31,5 @@ function ToastProvider({ children }) {
     </ToastContext.Provider>
   );
 }
-
-export const useToastContext = () => React.useContext(ToastContext);
 
 export default ToastProvider;

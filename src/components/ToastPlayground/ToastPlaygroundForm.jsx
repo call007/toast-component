@@ -19,7 +19,7 @@ function ToastPlaygroundForm() {
       setMessage("");
       setVariant(DEFAULT_VARIANT);
     },
-    [message, variant]
+    [message, variant, addToast]
   );
 
   return (

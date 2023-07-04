@@ -1,24 +1,9 @@
-import React from "react";
-import {
-  AlertOctagon,
-  AlertTriangle,
-  CheckCircle,
-  Info,
-  X,
-} from "react-feather";
+import { X } from "react-feather";
 
 import VisuallyHidden from "../VisuallyHidden";
 
+import { ICONS_BY_VARIANT } from "./consts";
 import styles from "./Toast.module.css";
-
-const ICONS_BY_VARIANT = {
-  notice: Info,
-  warning: AlertTriangle,
-  success: CheckCircle,
-  error: AlertOctagon,
-};
-
-export const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
 function Toast({ children, variant = "notice", onRequestClose }) {
   const Icon = ICONS_BY_VARIANT[variant];
