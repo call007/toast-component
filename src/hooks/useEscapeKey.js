@@ -6,7 +6,7 @@ export const useEscapeKey = (callback) => {
 
     const handleKeyDown = (event) => {
       if (event.code === "Escape") {
-        callback();
+        callback(event);
       }
     };
 
